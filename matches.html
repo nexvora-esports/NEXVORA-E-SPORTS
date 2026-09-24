@@ -1,12 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Matches — NEXVORA E-SPORTS</title><link rel="stylesheet" href="css/style.css"></head>
-<body data-page="matches">
-<div class="page-loader"><img src="assets/nexvora-logo.png"><span></span></div><div class="noise"></div>
-<header class="nav"><a class="brand" href="index.html"><img src="assets/nexvora-logo.png"><span>NEXVORA<small>E-SPORTS</small></span></a><button class="menu-toggle"><i></i><i></i></button><nav><a href="index.html">HOME</a><a href="roster.html">ROSTER</a><a class="active" href="matches.html">MATCHES</a><a href="media.html">MEDIA</a></nav><a class="nav-cta" href="https://www.facebook.com/profile.php?id=61593886864309" target="_blank">FOLLOW US ↗</a></header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matches — NEXVORA E-SPORTS</title>
+  <link rel="icon" href="assets/nexvora-logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div id="loader">
+  <div class="loader-logo">
+    <img src="assets/nexvora-logo.png" alt="NEXVORA">
+  </div>
+  <div class="loader-line"><span></span></div>
+  <p>LOADING MATCH CENTER</p>
+</div>
+
+<header class="navbar">
+  <a href="index.html" class="brand">
+    <img src="assets/nexvora-logo.png" alt="NEXVORA">
+    <span>NEXVORA<span class="accent">.</span></span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav id="navMenu">
+    <a href="index.html">HOME</a>
+    <a href="roster.html">ROSTER</a>
+    <a href="matches.html" class="active">MATCHES</a>
+    <a href="media.html">MEDIA</a>
+  </nav>
+
+  <a href="https://www.facebook.com/profile.php?id=61593886864309"
+     target="_blank"
+     class="nav-social">
+    FACEBOOK ↗
+  </a>
+</header>
+
 <main>
-<section class="page-hero"><div><p class="eyebrow"><span></span> NEXVORA / MATCH CENTER</p><h1>MATCH<br><em>CENTER.</em></h1><p>Upcoming fixtures, tournament runs and results — all in one place.</p></div></section>
-<section class="section matches"><div class="filter-row"><button class="filter active">ALL</button><button class="filter">UPCOMING</button><button class="filter">RESULTS</button></div><div id="matchesList"></div></section>
+
+<section class="page-hero">
+  <div class="hero-grid"></div>
+
+  <div class="page-hero-content reveal">
+    <span class="eyebrow">03 / COMPETITION</span>
+    <h1>MATCH<br><span>CENTER.</span></h1>
+    <p>Track the journey. Follow every battle.</p>
+  </div>
+</section>
+
+<section class="section">
+
+  <div class="filter-bar reveal">
+    <button class="filter active" data-filter="all">ALL</button>
+    <button class="filter" data-filter="upcoming">UPCOMING</button>
+    <button class="filter" data-filter="completed">COMPLETED</button>
+  </div>
+
+  <div class="matches-list" id="matchesList"></div>
+
+</section>
+
+<section class="cta-section">
+  <div class="cta-content reveal">
+    <span class="eyebrow">STAY CONNECTED</span>
+    <h2>NEVER MISS<br><span>A MATCH.</span></h2>
+
+    <a href="https://www.facebook.com/profile.php?id=61593886864309"
+       target="_blank"
+       class="btn btn-primary">
+      FOLLOW US ↗
+    </a>
+  </div>
+</section>
+
 </main>
-<footer><div class="footer-brand">NEXVORA<small>E-SPORTS</small></div><p>© 2026 NEXVORA E-SPORTS.</p><a href="https://www.facebook.com/profile.php?id=61593886864309" target="_blank">FACEBOOK ↗</a></footer>
-<script src="js/app.js"></script></body></html>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="assets/nexvora-logo.png" alt="NEXVORA">
+      <span>NEXVORA E-SPORTS</span>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">HOME</a>
+      <a href="roster.html">ROSTER</a>
+      <a href="matches.html">MATCHES</a>
+      <a href="media.html">MEDIA</a>
+    </div>
+
+    <a href="https://www.facebook.com/profile.php?id=61593886864309"
+       target="_blank"
+       class="footer-social">
+      FACEBOOK ↗
+    </a>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 NEXVORA E-SPORTS</span>
+    <span>BEYOND THE META.</span>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
