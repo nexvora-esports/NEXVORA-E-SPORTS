@@ -67,19 +67,13 @@ const PLAYERS = [
 ========================= */
 
 window.addEventListener("load", () => {
-
   const loader = document.getElementById("loader");
 
   if (loader) {
-
     setTimeout(() => {
-
       loader.classList.add("hide");
-
     }, 500);
-
   }
-
 });
 
 
@@ -87,33 +81,22 @@ window.addEventListener("load", () => {
    MOBILE MENU
 ========================= */
 
-const menuToggle =
-  document.getElementById("menuToggle");
-
-const navMenu =
-  document.getElementById("navMenu");
-
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
 
 if (menuToggle && navMenu) {
 
   menuToggle.addEventListener("click", () => {
-
     navMenu.classList.toggle("open");
-
   });
 
+  navMenu.querySelectorAll("a").forEach(link => {
 
-  navMenu
-    .querySelectorAll("a")
-    .forEach(link => {
-
-      link.addEventListener("click", () => {
-
-        navMenu.classList.remove("open");
-
-      });
-
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("open");
     });
+
+  });
 
 }
 
@@ -122,42 +105,31 @@ if (menuToggle && navMenu) {
    SCROLL REVEAL
 ========================= */
 
-const revealElements =
-  document.querySelectorAll(".reveal");
+const revealElements = document.querySelectorAll(".reveal");
 
+const revealObserver = new IntersectionObserver(
+  entries => {
 
-const revealObserver =
-  new IntersectionObserver(
+    entries.forEach(entry => {
 
-    entries => {
+      if (entry.isIntersecting) {
 
-      entries.forEach(entry => {
+        entry.target.classList.add("visible");
 
-        if (entry.isIntersecting) {
+        revealObserver.unobserve(entry.target);
 
-          entry.target.classList.add("visible");
+      }
 
-          revealObserver.unobserve(
-            entry.target
-          );
+    });
 
-        }
-
-      });
-
-    },
-
-    {
-      threshold: 0.12
-    }
-
-  );
-
+  },
+  {
+    threshold: 0.12
+  }
+);
 
 revealElements.forEach(element => {
-
   revealObserver.observe(element);
-
 });
 
 
@@ -171,7 +143,7 @@ function createPlayerCard(player, index) {
     <article class="player-card reveal">
 
       <span class="player-number">
-        0${index + 1}
+        ${String(index + 1).padStart(2, "0")}
       </span>
 
 
@@ -181,6 +153,7 @@ function createPlayerCard(player, index) {
           src="${player.photo}"
           alt="${player.ign}"
           class="player-photo"
+          loading="lazy"
         >
 
       </div>
@@ -217,24 +190,16 @@ function createPlayerCard(player, index) {
    HOME ROSTER
 ========================= */
 
-const homeRoster =
-  document.getElementById("homeRoster");
-
+const homeRoster = document.getElementById("homeRoster");
 
 if (homeRoster) {
 
-  homeRoster.innerHTML =
-    PLAYERS
-      .slice(0, 3)
-      .map((player, index) => {
-
-        return createPlayerCard(
-          player,
-          index
-        );
-
-      })
-      .join("");
+  homeRoster.innerHTML = PLAYERS
+    .slice(0, 3)
+    .map((player, index) => {
+      return createPlayerCard(player, index);
+    })
+    .join("");
 
 
   setTimeout(() => {
@@ -243,9 +208,7 @@ if (homeRoster) {
       .querySelectorAll(".reveal")
       .forEach(element => {
 
-        revealObserver.observe(
-          element
-        );
+        revealObserver.observe(element);
 
       });
 
@@ -258,23 +221,17 @@ if (homeRoster) {
    FULL ROSTER
 ========================= */
 
-const rosterGrid =
-  document.getElementById("rosterGrid");
-
+const rosterGrid = document.getElementById("rosterGrid");
 
 if (rosterGrid) {
 
-  rosterGrid.innerHTML =
-    PLAYERS
-      .map((player, index) => {
+  rosterGrid.innerHTML = PLAYERS
+    .map((player, index) => {
 
-        return createPlayerCard(
-          player,
-          index
-        );
+      return createPlayerCard(player, index);
 
-      })
-      .join("");
+    })
+    .join("");
 
 
   setTimeout(() => {
@@ -283,9 +240,7 @@ if (rosterGrid) {
       .querySelectorAll(".reveal")
       .forEach(element => {
 
-        revealObserver.observe(
-          element
-        );
+        revealObserver.observe(element);
 
       });
 
@@ -295,62 +250,54 @@ if (rosterGrid) {
 
 
 /* =========================
-   PLAYER STATS TABLE
+   PLAYER STATISTICS
 ========================= */
 
-const statsTable =
-  document.getElementById("statsTable");
-
+const statsTable = document.getElementById("statsTable");
 
 if (statsTable) {
 
-  statsTable.innerHTML =
-    PLAYERS
-      .map(player => {
+  statsTable.innerHTML = PLAYERS
+    .map(player => {
 
-        return `
-          <tr>
+      return `
+        <tr>
 
-            <td>
-              <span class="stats-player">
-                ${player.ign}
-              </span>
-            </td>
+          <td>
+            <span class="stats-player">
+              ${player.ign}
+            </span>
+          </td>
 
+          <td>
+            <span class="stats-role">
+              ${player.role}
+            </span>
+          </td>
 
-            <td>
-              <span class="stats-role">
-                ${player.role}
-              </span>
-            </td>
+          <td>
+            ${player.matches}
+          </td>
 
+          <td>
+            ${player.tournamentKills}
+          </td>
 
-            <td>
-              ${player.matches}
-            </td>
+          <td>
+            ${player.scrimKills}
+          </td>
 
+          <td>
+            <strong>
+              ${player.totalKills}
+            </strong>
+          </td>
 
-            <td>
-              ${player.tournamentKills}
-            </td>
+        </tr>
+      `;
 
-
-            <td>
-              ${player.scrimKills}
-            </td>
-
-
-            <td>
-              <strong>
-                ${player.totalKills}
-              </strong>
-            </td>
-
-          </tr>
-        `;
-
-      })
-      .join("");
+    })
+    .join("");
 
 }
 
@@ -363,28 +310,21 @@ document
   .querySelectorAll('a[href^="#"]')
   .forEach(anchor => {
 
-    anchor.addEventListener(
-      "click",
-      event => {
+    anchor.addEventListener("click", event => {
 
-        const target =
-          document.querySelector(
-            anchor.getAttribute("href")
-          );
+      const target = document.querySelector(
+        anchor.getAttribute("href")
+      );
 
+      if (!target) return;
 
-        if (!target) return;
+      event.preventDefault();
 
+      target.scrollIntoView({
+        behavior: "smooth"
+      });
 
-        event.preventDefault();
-
-
-        target.scrollIntoView({
-          behavior: "smooth"
-        });
-
-      }
-    );
+    });
 
   });
 
@@ -393,30 +333,22 @@ document
    PARALLAX HERO
 ========================= */
 
-const heroLogo =
-  document.querySelector(".hero-logo");
+const heroLogo = document.querySelector(".hero-logo");
 
+window.addEventListener("mousemove", event => {
 
-window.addEventListener(
-  "mousemove",
-  event => {
+  if (!heroLogo) return;
 
-    if (!heroLogo) return;
+  const x =
+    (window.innerWidth / 2 - event.clientX) / 80;
 
+  const y =
+    (window.innerHeight / 2 - event.clientY) / 80;
 
-    const x =
-      (window.innerWidth / 2 - event.clientX) / 80;
+  heroLogo.style.transform =
+    `translate(${x}px, ${y}px)`;
 
-
-    const y =
-      (window.innerHeight / 2 - event.clientY) / 80;
-
-
-    heroLogo.style.transform =
-      `translate(${x}px, ${y}px)`;
-
-  }
-);
+});
 
 
 /* =========================
@@ -424,15 +356,14 @@ window.addEventListener(
 ========================= */
 
 document
-  .querySelectorAll(
-    ".footer-bottom span:first-child"
-  )
+  .querySelectorAll(".footer-bottom span:first-child")
   .forEach(element => {
 
     element.innerHTML =
       `© ${new Date().getFullYear()} NEXVORA E-SPORTS`;
 
   });
+
 
 /* =========================================================
    NEXVORA PREMIUM INTERACTIONS
@@ -462,11 +393,9 @@ window.addEventListener("pointermove", event => {
    PREMIUM CARD TILT
 ========================= */
 
-const tiltCards =
-  document.querySelectorAll(
-    ".player-card, .management-card, .about-card, .nx-system-item"
-  );
-
+const tiltCards = document.querySelectorAll(
+  ".player-card, .management-card, .about-card, .nx-system-item"
+);
 
 if (window.matchMedia("(pointer:fine)").matches) {
 
@@ -474,14 +403,10 @@ if (window.matchMedia("(pointer:fine)").matches) {
 
     card.addEventListener("pointermove", event => {
 
-      const rect =
-        card.getBoundingClientRect();
+      const rect = card.getBoundingClientRect();
 
-      const x =
-        event.clientX - rect.left;
-
-      const y =
-        event.clientY - rect.top;
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
 
       const rotateX =
         ((y / rect.height) - 0.5) * -4;
@@ -525,10 +450,14 @@ if (window.matchMedia("(pointer:fine)").matches) {
           button.getBoundingClientRect();
 
         const x =
-          event.clientX - rect.left - rect.width / 2;
+          event.clientX -
+          rect.left -
+          rect.width / 2;
 
         const y =
-          event.clientY - rect.top - rect.height / 2;
+          event.clientY -
+          rect.top -
+          rect.height / 2;
 
         button.style.transform =
           `translate(${x * 0.08}px, ${y * 0.08}px)`;
@@ -561,13 +490,10 @@ document
   .querySelectorAll("#navMenu a")
   .forEach(link => {
 
-    const href =
-      link.getAttribute("href");
+    const href = link.getAttribute("href");
 
     if (href === currentPage) {
-
       link.classList.add("active");
-
     }
 
   });
