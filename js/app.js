@@ -433,3 +433,141 @@ document
       `© ${new Date().getFullYear()} NEXVORA E-SPORTS`;
 
   });
+
+/* =========================================================
+   NEXVORA PREMIUM INTERACTIONS
+========================================================= */
+
+
+/* =========================
+   CURSOR GLOW
+========================= */
+
+const cursorGlow = document.createElement("div");
+
+cursorGlow.className = "nx-cursor-glow";
+
+document.body.appendChild(cursorGlow);
+
+
+window.addEventListener("pointermove", event => {
+
+  cursorGlow.style.transform =
+    `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+
+});
+
+
+/* =========================
+   PREMIUM CARD TILT
+========================= */
+
+const tiltCards =
+  document.querySelectorAll(
+    ".player-card, .management-card, .about-card, .nx-system-item"
+  );
+
+
+if (window.matchMedia("(pointer:fine)").matches) {
+
+  tiltCards.forEach(card => {
+
+    card.addEventListener("pointermove", event => {
+
+      const rect =
+        card.getBoundingClientRect();
+
+      const x =
+        event.clientX - rect.left;
+
+      const y =
+        event.clientY - rect.top;
+
+      const rotateX =
+        ((y / rect.height) - 0.5) * -4;
+
+      const rotateY =
+        ((x / rect.width) - 0.5) * 4;
+
+      card.style.transform =
+        `perspective(900px)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)
+         translateY(-6px)`;
+
+    });
+
+
+    card.addEventListener("pointerleave", () => {
+
+      card.style.transform = "";
+
+    });
+
+  });
+
+}
+
+
+/* =========================
+   MAGNETIC BUTTONS
+========================= */
+
+if (window.matchMedia("(pointer:fine)").matches) {
+
+  document
+    .querySelectorAll(".btn")
+    .forEach(button => {
+
+      button.addEventListener("pointermove", event => {
+
+        const rect =
+          button.getBoundingClientRect();
+
+        const x =
+          event.clientX - rect.left - rect.width / 2;
+
+        const y =
+          event.clientY - rect.top - rect.height / 2;
+
+        button.style.transform =
+          `translate(${x * 0.08}px, ${y * 0.08}px)`;
+
+      });
+
+
+      button.addEventListener("pointerleave", () => {
+
+        button.style.transform = "";
+
+      });
+
+    });
+
+}
+
+
+/* =========================
+   ACTIVE PAGE NAVIGATION
+========================= */
+
+const currentPage =
+  window.location.pathname
+    .split("/")
+    .pop() || "index.html";
+
+
+document
+  .querySelectorAll("#navMenu a")
+  .forEach(link => {
+
+    const href =
+      link.getAttribute("href");
+
+    if (href === currentPage) {
+
+      link.classList.add("active");
+
+    }
+
+  });
