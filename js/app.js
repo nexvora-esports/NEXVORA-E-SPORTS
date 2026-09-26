@@ -2,7 +2,7 @@ const PLAYERS = [
   {
     ign: "NXvesGrey",
     name: "Nahid Hasan Joy",
-    role: "ROLE TBA",
+    role: "FRAGGER",
     photo: "assets/grey.png",
     matches: "—",
     tournamentKills: "—",
@@ -12,7 +12,7 @@ const PLAYERS = [
   {
     ign: "NXvesMONARCH",
     name: "Asif Ahmed",
-    role: "ROLE TBA",
+    role: "IGL",
     photo: "assets/monarch.png",
     matches: "—",
     tournamentKills: "—",
@@ -22,7 +22,7 @@ const PLAYERS = [
   {
     ign: "NXvesNooZY",
     name: "Shamiulla Shitul",
-    role: "ROLE TBA",
+    role: "ASSAULTER",
     photo: "assets/noozy.png",
     matches: "—",
     tournamentKills: "—",
@@ -32,7 +32,7 @@ const PLAYERS = [
   {
     ign: "BOTxTEKZEEz",
     name: "Wasir",
-    role: "ROLE TBA",
+    role: "FRAGGER",
     photo: "assets/TEKZEEz.png",
     matches: "—",
     tournamentKills: "—",
@@ -42,7 +42,7 @@ const PLAYERS = [
   {
     ign: "NXvesRYUK",
     name: "Robiul Islam",
-    role: "ROLE TBA",
+    role: "SUPPORTER",
     photo: "assets/ryuk.png",
     matches: "—",
     tournamentKills: "—",
@@ -52,7 +52,7 @@ const PLAYERS = [
   {
     ign: "NXvesAkaTsukI",
     name: "Samin Muktadir",
-    role: "ROLE TBA",
+    role: "SUPPORTER",
     photo: "assets/akatsuki.png",
     matches: "—",
     tournamentKills: "—",
