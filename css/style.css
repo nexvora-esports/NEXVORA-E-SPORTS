@@ -2398,3 +2398,44 @@ footer::before {
   }
 
 }
+
+/* =========================================================
+   CURSOR GLOW
+========================================================= */
+
+.nx-cursor-glow {
+  position: fixed;
+
+  width: 220px;
+  height: 220px;
+
+  left: -110px;
+  top: -110px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 9997;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,234,255,0.075),
+      transparent 68%
+    );
+
+  filter: blur(8px);
+
+  will-change: transform;
+
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 900px) {
+
+  .nx-cursor-glow {
+    display: none;
+  }
+
+}
