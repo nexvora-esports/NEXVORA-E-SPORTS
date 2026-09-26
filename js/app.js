@@ -62,49 +62,24 @@ const PLAYERS = [
 ];
 
 
-const MATCHES = [
-  {
-    date: "TBA",
-    month: "2026",
-    event: "UPCOMING COMPETITION",
-    title: "NEXT NEXVORA BATTLE",
-    opponent: "OPPONENT",
-    result: "VS",
-    status: "upcoming"
-  },
-  {
-    date: "TBA",
-    month: "2026",
-    event: "TOURNAMENT",
-    title: "TOURNAMENT MATCH",
-    opponent: "OPPONENT",
-    result: "VS",
-    status: "upcoming"
-  },
-  {
-    date: "TBA",
-    month: "2026",
-    event: "SCRIM",
-    title: "SCRIM SESSION",
-    opponent: "OPPONENT",
-    result: "VS",
-    status: "upcoming"
-  }
-];
-
-
 /* =========================
    PAGE LOADER
 ========================= */
 
 window.addEventListener("load", () => {
+
   const loader = document.getElementById("loader");
 
   if (loader) {
+
     setTimeout(() => {
+
       loader.classList.add("hide");
+
     }, 500);
+
   }
+
 });
 
 
@@ -112,22 +87,34 @@ window.addEventListener("load", () => {
    MOBILE MENU
 ========================= */
 
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+const menuToggle =
+  document.getElementById("menuToggle");
+
+const navMenu =
+  document.getElementById("navMenu");
+
 
 if (menuToggle && navMenu) {
 
   menuToggle.addEventListener("click", () => {
+
     navMenu.classList.toggle("open");
+
   });
 
-  navMenu.querySelectorAll("a").forEach(link => {
 
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("open");
+  navMenu
+    .querySelectorAll("a")
+    .forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        navMenu.classList.remove("open");
+
+      });
+
     });
 
-  });
 }
 
 
@@ -135,31 +122,42 @@ if (menuToggle && navMenu) {
    SCROLL REVEAL
 ========================= */
 
-const revealElements = document.querySelectorAll(".reveal");
+const revealElements =
+  document.querySelectorAll(".reveal");
 
-const revealObserver = new IntersectionObserver(
-  entries => {
 
-    entries.forEach(entry => {
+const revealObserver =
+  new IntersectionObserver(
 
-      if (entry.isIntersecting) {
+    entries => {
 
-        entry.target.classList.add("visible");
+      entries.forEach(entry => {
 
-        revealObserver.unobserve(entry.target);
+        if (entry.isIntersecting) {
 
-      }
+          entry.target.classList.add("visible");
 
-    });
+          revealObserver.unobserve(
+            entry.target
+          );
 
-  },
-  {
-    threshold: 0.12
-  }
-);
+        }
+
+      });
+
+    },
+
+    {
+      threshold: 0.12
+    }
+
+  );
+
 
 revealElements.forEach(element => {
+
   revealObserver.observe(element);
+
 });
 
 
@@ -176,6 +174,7 @@ function createPlayerCard(player, index) {
         0${index + 1}
       </span>
 
+
       <div class="player-avatar">
 
         <img
@@ -185,6 +184,7 @@ function createPlayerCard(player, index) {
         >
 
       </div>
+
 
       <div class="player-info">
 
@@ -202,12 +202,14 @@ function createPlayerCard(player, index) {
 
       </div>
 
+
       <div class="player-arrow">
         ↗
       </div>
 
     </article>
   `;
+
 }
 
 
@@ -215,26 +217,40 @@ function createPlayerCard(player, index) {
    HOME ROSTER
 ========================= */
 
-const homeRoster = document.getElementById("homeRoster");
+const homeRoster =
+  document.getElementById("homeRoster");
+
 
 if (homeRoster) {
 
-  homeRoster.innerHTML = PLAYERS
-    .slice(0, 3)
-    .map((player, index) => {
-      return createPlayerCard(player, index);
-    })
-    .join("");
+  homeRoster.innerHTML =
+    PLAYERS
+      .slice(0, 3)
+      .map((player, index) => {
+
+        return createPlayerCard(
+          player,
+          index
+        );
+
+      })
+      .join("");
+
 
   setTimeout(() => {
 
     homeRoster
       .querySelectorAll(".reveal")
       .forEach(element => {
-        revealObserver.observe(element);
+
+        revealObserver.observe(
+          element
+        );
+
       });
 
   }, 100);
+
 }
 
 
@@ -242,25 +258,39 @@ if (homeRoster) {
    FULL ROSTER
 ========================= */
 
-const rosterGrid = document.getElementById("rosterGrid");
+const rosterGrid =
+  document.getElementById("rosterGrid");
+
 
 if (rosterGrid) {
 
-  rosterGrid.innerHTML = PLAYERS
-    .map((player, index) => {
-      return createPlayerCard(player, index);
-    })
-    .join("");
+  rosterGrid.innerHTML =
+    PLAYERS
+      .map((player, index) => {
+
+        return createPlayerCard(
+          player,
+          index
+        );
+
+      })
+      .join("");
+
 
   setTimeout(() => {
 
     rosterGrid
       .querySelectorAll(".reveal")
       .forEach(element => {
-        revealObserver.observe(element);
+
+        revealObserver.observe(
+          element
+        );
+
       });
 
   }, 100);
+
 }
 
 
@@ -268,178 +298,61 @@ if (rosterGrid) {
    PLAYER STATS TABLE
 ========================= */
 
-const statsTable = document.getElementById("statsTable");
+const statsTable =
+  document.getElementById("statsTable");
+
 
 if (statsTable) {
 
-  statsTable.innerHTML = PLAYERS
-    .map(player => {
+  statsTable.innerHTML =
+    PLAYERS
+      .map(player => {
 
-      return `
-        <tr>
+        return `
+          <tr>
 
-          <td>
-            <span class="stats-player">
-              ${player.ign}
-            </span>
-          </td>
+            <td>
+              <span class="stats-player">
+                ${player.ign}
+              </span>
+            </td>
 
-          <td>
-            <span class="stats-role">
-              ${player.role}
-            </span>
-          </td>
 
-          <td>
-            ${player.matches}
-          </td>
+            <td>
+              <span class="stats-role">
+                ${player.role}
+              </span>
+            </td>
 
-          <td>
-            ${player.tournamentKills}
-          </td>
 
-          <td>
-            ${player.scrimKills}
-          </td>
+            <td>
+              ${player.matches}
+            </td>
 
-          <td>
-            <strong>
-              ${player.totalKills}
-            </strong>
-          </td>
 
-        </tr>
-      `;
+            <td>
+              ${player.tournamentKills}
+            </td>
 
-    })
-    .join("");
+
+            <td>
+              ${player.scrimKills}
+            </td>
+
+
+            <td>
+              <strong>
+                ${player.totalKills}
+              </strong>
+            </td>
+
+          </tr>
+        `;
+
+      })
+      .join("");
+
 }
-
-
-/* =========================
-   MATCH CENTER
-========================= */
-
-const matchesList = document.getElementById("matchesList");
-
-function renderMatches(filter = "all") {
-
-  if (!matchesList) return;
-
-  const filtered =
-    filter === "all"
-      ? MATCHES
-      : MATCHES.filter(
-          match => match.status === filter
-        );
-
-  matchesList.innerHTML = filtered
-    .map(match => {
-
-      return `
-        <article class="match-item reveal">
-
-          <div class="match-date">
-
-            <strong>
-              ${match.date}
-            </strong>
-
-            <span>
-              ${match.month}
-            </span>
-
-          </div>
-
-
-          <div class="match-event">
-
-            <span>
-              ${match.event}
-            </span>
-
-            <strong>
-              ${match.title}
-            </strong>
-
-          </div>
-
-
-          <div class="match-side">
-
-            <img
-              src="assets/nexvora-logo.png"
-              alt="NEXVORA"
-            >
-
-            NEXVORA
-
-          </div>
-
-
-          <div class="match-result">
-
-            <strong>
-              ${match.result}
-            </strong>
-
-            <span>
-              ${match.status.toUpperCase()}
-            </span>
-
-          </div>
-
-
-          <div class="match-side">
-
-            <div class="opponent-logo">
-              ?
-            </div>
-
-            ${match.opponent}
-
-          </div>
-
-        </article>
-      `;
-
-    })
-    .join("");
-
-
-  matchesList
-    .querySelectorAll(".reveal")
-    .forEach(element => {
-      revealObserver.observe(element);
-    });
-}
-
-renderMatches();
-
-
-/* =========================
-   MATCH FILTER
-========================= */
-
-const filters = document.querySelectorAll(".filter");
-
-filters.forEach(filter => {
-
-  filter.addEventListener("click", () => {
-
-    filters.forEach(button => {
-      button.classList.remove("active");
-    });
-
-    filter.classList.add("active");
-
-    renderMatches(
-      filter.dataset.filter
-    );
-
-  });
-
-});
 
 
 /* =========================
@@ -450,21 +363,28 @@ document
   .querySelectorAll('a[href^="#"]')
   .forEach(anchor => {
 
-    anchor.addEventListener("click", event => {
+    anchor.addEventListener(
+      "click",
+      event => {
 
-      const target = document.querySelector(
-        anchor.getAttribute("href")
-      );
+        const target =
+          document.querySelector(
+            anchor.getAttribute("href")
+          );
 
-      if (!target) return;
 
-      event.preventDefault();
+        if (!target) return;
 
-      target.scrollIntoView({
-        behavior: "smooth"
-      });
 
-    });
+        event.preventDefault();
+
+
+        target.scrollIntoView({
+          behavior: "smooth"
+        });
+
+      }
+    );
 
   });
 
@@ -476,20 +396,27 @@ document
 const heroLogo =
   document.querySelector(".hero-logo");
 
-window.addEventListener("mousemove", event => {
 
-  if (!heroLogo) return;
+window.addEventListener(
+  "mousemove",
+  event => {
 
-  const x =
-    (window.innerWidth / 2 - event.clientX) / 80;
+    if (!heroLogo) return;
 
-  const y =
-    (window.innerHeight / 2 - event.clientY) / 80;
 
-  heroLogo.style.transform =
-    `translate(${x}px, ${y}px)`;
+    const x =
+      (window.innerWidth / 2 - event.clientX) / 80;
 
-});
+
+    const y =
+      (window.innerHeight / 2 - event.clientY) / 80;
+
+
+    heroLogo.style.transform =
+      `translate(${x}px, ${y}px)`;
+
+  }
+);
 
 
 /* =========================
@@ -497,7 +424,9 @@ window.addEventListener("mousemove", event => {
 ========================= */
 
 document
-  .querySelectorAll(".footer-bottom span:first-child")
+  .querySelectorAll(
+    ".footer-bottom span:first-child"
+  )
   .forEach(element => {
 
     element.innerHTML =
