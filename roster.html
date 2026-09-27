@@ -8,12 +8,62 @@
 
   <link rel="icon" href="assets/nexvora-logo.png">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- PLAYER STATISTICS CUSTOM STYLE -->
+  <style>
+    .stats-heading-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .stats-heading-content .section-number {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .stats-heading-content .eyebrow {
+      display: block;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: 3px;
+      font-weight: 700;
+    }
+
+    .stats-heading-content .stats-note {
+      display: block;
+      margin-top: 7px;
+      font-size: 9px;
+      line-height: 1.4;
+      letter-spacing: 1.4px;
+      font-weight: 400;
+      opacity: 0.55;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+
+      .stats-heading-content .eyebrow {
+        font-size: 15px;
+        letter-spacing: 2.5px;
+      }
+
+      .stats-heading-content .stats-note {
+        font-size: 8px;
+        letter-spacing: 1px;
+        margin-top: 6px;
+      }
+
+    }
+  </style>
+
 </head>
 
 <body>
 
 <!-- LOADER -->
 <div id="loader">
+
   <div class="loader-logo">
     <img src="assets/nexvora-logo.png" alt="NEXVORA">
   </div>
@@ -23,6 +73,7 @@
   </div>
 
   <p>LOADING ROSTER</p>
+
 </div>
 
 
@@ -30,22 +81,54 @@
 <header class="navbar">
 
   <a href="index.html" class="brand">
-    <img src="assets/nexvora-logo.png" alt="NEXVORA">
-    <span>NEXVORA<span class="accent">.</span></span>
+
+    <img
+      src="assets/nexvora-logo.png"
+      alt="NEXVORA"
+    >
+
+    <span>
+      NEXVORA<span class="accent">.</span>
+    </span>
+
   </a>
 
-  <button class="menu-toggle" id="menuToggle">
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+  >
+
     <span></span>
     <span></span>
     <span></span>
+
   </button>
 
+
   <nav id="navMenu">
-    <a href="index.html">HOME</a>
-    <a href="roster.html" class="active">ROSTER</a>
-    <a href="management.html">MANAGEMENT</a>
-    <a href="media.html">MEDIA</a>
+
+    <a href="index.html">
+      HOME
+    </a>
+
+    <a
+      href="roster.html"
+      class="active"
+    >
+      ROSTER
+    </a>
+
+    <a href="management.html">
+      MANAGEMENT
+    </a>
+
+    <a href="media.html">
+      MEDIA
+    </a>
+
   </nav>
+
 
   <a
     href="https://www.facebook.com/profile.php?id=61593886864309"
@@ -64,6 +147,7 @@
 <section class="page-hero">
 
   <div class="hero-grid"></div>
+
 
   <div class="page-hero-content reveal">
 
@@ -103,6 +187,7 @@
 
     </div>
 
+
     <p>
       Our roster combines aggressive mechanics,
       disciplined rotations, clutch mentality and
@@ -127,6 +212,7 @@
         >
 
       </div>
+
 
       <div class="player-info">
 
@@ -163,6 +249,7 @@
 
       </div>
 
+
       <div class="player-info">
 
         <span class="player-number">
@@ -197,6 +284,7 @@
         >
 
       </div>
+
 
       <div class="player-info">
 
@@ -233,6 +321,7 @@
 
       </div>
 
+
       <div class="player-info">
 
         <span class="player-number">
@@ -267,6 +356,7 @@
         >
 
       </div>
+
 
       <div class="player-info">
 
@@ -303,6 +393,7 @@
 
       </div>
 
+
       <div class="player-info">
 
         <span class="player-number">
@@ -338,7 +429,7 @@
 
     <div class="section-heading reveal">
 
-      <div>
+      <div class="stats-heading-content">
 
         <span class="section-number">
           03
@@ -359,17 +450,39 @@
 
     <div class="stats-table-wrap reveal">
 
-      <table class="stats-table">
+      <table
+        class="stats-table"
+        id="statsTable"
+      >
 
         <thead>
 
           <tr>
-            <th>PLAYER</th>
-            <th>ROLE</th>
-            <th>MATCHES</th>
-            <th>TOURNAMENT KILLS</th>
-            <th>SCRIM KILLS</th>
-            <th>TOTAL KILLS</th>
+
+            <th>
+              PLAYER
+            </th>
+
+            <th>
+              ROLE
+            </th>
+
+            <th>
+              MATCHES
+            </th>
+
+            <th>
+              TOURNAMENT KILLS
+            </th>
+
+            <th>
+              SCRIM KILLS
+            </th>
+
+            <th>
+              TOTAL KILLS
+            </th>
+
           </tr>
 
         </thead>
@@ -378,57 +491,176 @@
         <tbody>
 
           <tr>
-            <td>NXvesGrey</td>
-            <td>FRAGGER</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
+
+            <td>
+              NXvesGrey
+            </td>
+
+            <td>
+              FRAGGER
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
           </tr>
 
-          <tr>
-            <td>NXvesMONARCH</td>
-            <td>IGL</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-          </tr>
 
           <tr>
-            <td>NXvesNooZY</td>
-            <td>ASSAULTER</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
+
+            <td>
+              NXvesMONARCH
+            </td>
+
+            <td>
+              IGL
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
           </tr>
 
-          <tr>
-            <td>BOTxTEKZEEz</td>
-            <td>FRAGGER</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-          </tr>
 
           <tr>
-            <td>NXvesRYUK</td>
-            <td>SUPPORTER</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
+
+            <td>
+              NXvesNooZY
+            </td>
+
+            <td>
+              ASSAULTER
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
           </tr>
 
+
           <tr>
-            <td>NXvesAkaTsukI</td>
-            <td>SUPPORTER</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
+
+            <td>
+              BOTxTEKZEEz
+            </td>
+
+            <td>
+              FRAGGER
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              NXvesRYUK
+            </td>
+
+            <td>
+              SUPPORTER
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              NXvesAkaTsukI
+            </td>
+
+            <td>
+              SUPPORTER
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
+            <td>
+              —
+            </td>
+
           </tr>
 
         </tbody>
@@ -448,6 +680,7 @@
 <footer>
 
   <div class="footer-top">
+
 
     <div class="footer-brand">
 
