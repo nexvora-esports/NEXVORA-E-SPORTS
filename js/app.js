@@ -8,6 +8,7 @@ const PLAYERS = [
     tournamentKills: 3,
     scrimKills: 13
   },
+
   {
     ign: "NXvesMONARCH",
     name: "Asif Ahmed",
@@ -17,6 +18,7 @@ const PLAYERS = [
     tournamentKills: 2,
     scrimKills: 12
   },
+
   {
     ign: "NXvesNooZY",
     name: "Shamiulla Shitul",
@@ -26,6 +28,7 @@ const PLAYERS = [
     tournamentKills: 3,
     scrimKills: 14
   },
+
   {
     ign: "BOTxTEKZEEz",
     name: "Wasir",
@@ -35,6 +38,7 @@ const PLAYERS = [
     tournamentKills: 0,
     scrimKills: 10
   },
+
   {
     ign: "NXvesRYUK",
     name: "Robiul Islam",
@@ -44,6 +48,7 @@ const PLAYERS = [
     tournamentKills: 0,
     scrimKills: 6
   },
+
   {
     ign: "NXvesAkaTsukI",
     name: "Samin Muktadir",
@@ -56,26 +61,36 @@ const PLAYERS = [
 ];
 
 
-/* =========================
+/* =========================================================
    AUTOMATIC TOTAL KILLS
-========================= */
+========================================================= */
 
 PLAYERS.forEach(player => {
 
+  player.matches =
+    Number(player.matches) || 0;
+
+  player.tournamentKills =
+    Number(player.tournamentKills) || 0;
+
+  player.scrimKills =
+    Number(player.scrimKills) || 0;
+
   player.totalKills =
-    Number(player.tournamentKills || 0) +
-    Number(player.scrimKills || 0);
+    player.tournamentKills +
+    player.scrimKills;
 
 });
 
 
-/* =========================
+/* =========================================================
    PAGE LOADER
-========================= */
+========================================================= */
 
 window.addEventListener("load", () => {
 
-  const loader = document.getElementById("loader");
+  const loader =
+    document.getElementById("loader");
 
   if (loader) {
 
@@ -90,15 +105,16 @@ window.addEventListener("load", () => {
 });
 
 
-/* =========================
+/* =========================================================
    MOBILE MENU
-========================= */
+========================================================= */
 
 const menuToggle =
   document.getElementById("menuToggle");
 
 const navMenu =
   document.getElementById("navMenu");
+
 
 if (menuToggle && navMenu) {
 
@@ -122,9 +138,9 @@ if (menuToggle && navMenu) {
 }
 
 
-/* =========================
+/* =========================================================
    SCROLL REVEAL
-========================= */
+========================================================= */
 
 const revealElements =
   document.querySelectorAll(".reveal");
@@ -165,9 +181,9 @@ revealElements.forEach(element => {
 });
 
 
-/* =========================
+/* =========================================================
    PLAYER CARD
-========================= */
+========================================================= */
 
 function createPlayerCard(player, index) {
 
@@ -215,9 +231,9 @@ function createPlayerCard(player, index) {
 }
 
 
-/* =========================
+/* =========================================================
    HOME ROSTER
-========================= */
+========================================================= */
 
 const homeRoster =
   document.getElementById("homeRoster");
@@ -245,9 +261,7 @@ if (homeRoster) {
       .querySelectorAll(".reveal")
       .forEach(element => {
 
-        revealObserver.observe(
-          element
-        );
+        revealObserver.observe(element);
 
       });
 
@@ -256,9 +270,9 @@ if (homeRoster) {
 }
 
 
-/* =========================
+/* =========================================================
    FULL ROSTER
-========================= */
+========================================================= */
 
 const rosterGrid =
   document.getElementById("rosterGrid");
@@ -285,9 +299,7 @@ if (rosterGrid) {
       .querySelectorAll(".reveal")
       .forEach(element => {
 
-        revealObserver.observe(
-          element
-        );
+        revealObserver.observe(element);
 
       });
 
@@ -296,9 +308,10 @@ if (rosterGrid) {
 }
 
 
-/* =========================
+/* =========================================================
    PLAYER STATISTICS
-========================= */
+   AUTOMATIC RANKING
+========================================================= */
 
 const statsTable =
   document.getElementById("statsTable");
@@ -306,45 +319,110 @@ const statsTable =
 
 if (statsTable) {
 
-  statsTable.innerHTML =
-    PLAYERS
-      .map(player => {
+  /*
+    Ranking rules:
 
-        const totalKills =
-          Number(player.tournamentKills || 0) +
-          Number(player.scrimKills || 0);
+    1. Highest TOTAL KILLS first
+    2. If total kills are equal,
+       highest MATCHES first
+    3. If both are equal,
+       keep original order
+  */
+
+  const rankedPlayers =
+    PLAYERS
+      .map((player, originalIndex) => {
+
+        return {
+          ...player,
+          originalIndex: originalIndex
+        };
+
+      })
+      .sort((a, b) => {
+
+        /* FIRST: TOTAL KILLS */
+
+        if (b.totalKills !== a.totalKills) {
+
+          return b.totalKills -
+                 a.totalKills;
+
+        }
+
+
+        /* SECOND: MATCHES */
+
+        if (b.matches !== a.matches) {
+
+          return b.matches -
+                 a.matches;
+
+        }
+
+
+        /* THIRD: ORIGINAL ORDER */
+
+        return a.originalIndex -
+               b.originalIndex;
+
+      });
+
+
+  /*
+    Create the ranked statistics table
+  */
+
+  statsTable.innerHTML =
+    rankedPlayers
+      .map((player, index) => {
 
         return `
           <tr>
 
             <td>
+
+              <span class="stats-rank">
+                ${index + 1}
+              </span>
+
               <span class="stats-player">
                 ${player.ign}
               </span>
+
             </td>
 
+
             <td>
+
               <span class="stats-role">
                 ${player.role}
               </span>
+
             </td>
 
+
             <td>
-              ${player.matches || "—"}
+              ${player.matches}
             </td>
+
 
             <td>
               ${player.tournamentKills}
             </td>
 
+
             <td>
               ${player.scrimKills}
             </td>
 
+
             <td>
+
               <strong>
-                ${totalKills}
+                ${player.totalKills}
               </strong>
+
             </td>
 
           </tr>
@@ -356,9 +434,9 @@ if (statsTable) {
 }
 
 
-/* =========================
+/* =========================================================
    SMOOTH INTERNAL LINKS
-========================= */
+========================================================= */
 
 document
   .querySelectorAll('a[href^="#"]')
@@ -387,9 +465,9 @@ document
   });
 
 
-/* =========================
+/* =========================================================
    PARALLAX HERO
-========================= */
+========================================================= */
 
 const heroLogo =
   document.querySelector(".hero-logo");
@@ -416,9 +494,9 @@ window.addEventListener(
 );
 
 
-/* =========================
+/* =========================================================
    CURRENT YEAR
-========================= */
+========================================================= */
 
 document
   .querySelectorAll(
@@ -437,9 +515,9 @@ document
 ========================================================= */
 
 
-/* =========================
+/* =========================================================
    CURSOR GLOW
-========================= */
+========================================================= */
 
 const cursorGlow =
   document.createElement("div");
@@ -467,9 +545,9 @@ window.addEventListener(
 );
 
 
-/* =========================
+/* =========================================================
    PREMIUM CARD TILT
-========================= */
+========================================================= */
 
 const tiltCards =
   document.querySelectorAll(
@@ -532,9 +610,9 @@ if (
 }
 
 
-/* =========================
+/* =========================================================
    MAGNETIC BUTTONS
-========================= */
+========================================================= */
 
 if (
   window.matchMedia(
@@ -587,9 +665,9 @@ if (
 }
 
 
-/* =========================
+/* =========================================================
    ACTIVE PAGE NAVIGATION
-========================= */
+========================================================= */
 
 const currentPage =
   window.location.pathname
