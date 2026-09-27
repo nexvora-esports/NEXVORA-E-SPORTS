@@ -4,54 +4,54 @@ const PLAYERS = [
     name: "Nahid Hasan Joy",
     role: "FRAGGER",
     photo: "assets/grey.png",
-    matches: 0,
-    tournamentKills: 0,
-    scrimKills: 0
+    matches: 24,
+    tournamentKills: 3,
+    scrimKills: 13
   },
   {
     ign: "NXvesMONARCH",
     name: "Asif Ahmed",
     role: "IGL",
     photo: "assets/monarch.png",
-    matches: 0,
-    tournamentKills: 0,
-    scrimKills: 0
+    matches: 25,
+    tournamentKills: 2,
+    scrimKills: 12
   },
   {
     ign: "NXvesNooZY",
     name: "Shamiulla Shitul",
     role: "ASSAULTER",
     photo: "assets/noozy.png",
-    matches: 0,
-    tournamentKills: 0,
-    scrimKills: 0
+    matches: 30,
+    tournamentKills: 3,
+    scrimKills: 14
   },
   {
     ign: "BOTxTEKZEEz",
     name: "Wasir",
     role: "FRAGGER",
     photo: "assets/TEKZEEz.png",
-    matches: 0,
+    matches: 8,
     tournamentKills: 0,
-    scrimKills: 0
+    scrimKills: 10
   },
   {
     ign: "NXvesRYUK",
     name: "Robiul Islam",
     role: "SUPPORTER",
     photo: "assets/ryuk.png",
-    matches: 0,
+    matches: 11,
     tournamentKills: 0,
-    scrimKills: 0
+    scrimKills: 6
   },
   {
     ign: "NXvesAkaTsukI",
     name: "Samin Muktadir",
     role: "SUPPORTER",
     photo: "assets/akatsuki.png",
-    matches: 0,
-    tournamentKills: 0,
-    scrimKills: 0
+    matches: 14,
+    tournamentKills: 1,
+    scrimKills: 1
   }
 ];
 
