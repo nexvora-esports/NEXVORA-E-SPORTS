@@ -4,62 +4,69 @@ const PLAYERS = [
     name: "Nahid Hasan Joy",
     role: "FRAGGER",
     photo: "assets/grey.png",
-    matches: "—",
-    tournamentKills: "—",
-    scrimKills: "—",
-    totalKills: "—"
+    matches: 0,
+    tournamentKills: 0,
+    scrimKills: 0
   },
   {
     ign: "NXvesMONARCH",
     name: "Asif Ahmed",
     role: "IGL",
     photo: "assets/monarch.png",
-    matches: "—",
-    tournamentKills: "—",
-    scrimKills: "—",
-    totalKills: "—"
+    matches: 0,
+    tournamentKills: 0,
+    scrimKills: 0
   },
   {
     ign: "NXvesNooZY",
     name: "Shamiulla Shitul",
     role: "ASSAULTER",
     photo: "assets/noozy.png",
-    matches: "—",
-    tournamentKills: "—",
-    scrimKills: "—",
-    totalKills: "—"
+    matches: 0,
+    tournamentKills: 0,
+    scrimKills: 0
   },
   {
     ign: "BOTxTEKZEEz",
     name: "Wasir",
     role: "FRAGGER",
     photo: "assets/TEKZEEz.png",
-    matches: "—",
-    tournamentKills: "—",
-    scrimKills: "—",
-    totalKills: "—"
+    matches: 0,
+    tournamentKills: 0,
+    scrimKills: 0
   },
   {
     ign: "NXvesRYUK",
     name: "Robiul Islam",
     role: "SUPPORTER",
     photo: "assets/ryuk.png",
-    matches: "—",
-    tournamentKills: "—",
-    scrimKills: "—",
-    totalKills: "—"
+    matches: 0,
+    tournamentKills: 0,
+    scrimKills: 0
   },
   {
     ign: "NXvesAkaTsukI",
     name: "Samin Muktadir",
     role: "SUPPORTER",
     photo: "assets/akatsuki.png",
-    matches: "—",
-    tournamentKills: "—",
-    scrimKills: "—",
-    totalKills: "—"
+    matches: 0,
+    tournamentKills: 0,
+    scrimKills: 0
   }
 ];
+
+
+/* =========================
+   AUTOMATIC TOTAL KILLS
+========================= */
+
+PLAYERS.forEach(player => {
+
+  player.totalKills =
+    Number(player.tournamentKills || 0) +
+    Number(player.scrimKills || 0);
+
+});
 
 
 /* =========================
@@ -67,13 +74,19 @@ const PLAYERS = [
 ========================= */
 
 window.addEventListener("load", () => {
+
   const loader = document.getElementById("loader");
 
   if (loader) {
+
     setTimeout(() => {
+
       loader.classList.add("hide");
+
     }, 500);
+
   }
+
 });
 
 
@@ -81,19 +94,27 @@ window.addEventListener("load", () => {
    MOBILE MENU
 ========================= */
 
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+const menuToggle =
+  document.getElementById("menuToggle");
+
+const navMenu =
+  document.getElementById("navMenu");
 
 if (menuToggle && navMenu) {
 
   menuToggle.addEventListener("click", () => {
+
     navMenu.classList.toggle("open");
+
   });
+
 
   navMenu.querySelectorAll("a").forEach(link => {
 
     link.addEventListener("click", () => {
+
       navMenu.classList.remove("open");
+
     });
 
   });
@@ -105,31 +126,42 @@ if (menuToggle && navMenu) {
    SCROLL REVEAL
 ========================= */
 
-const revealElements = document.querySelectorAll(".reveal");
+const revealElements =
+  document.querySelectorAll(".reveal");
 
-const revealObserver = new IntersectionObserver(
-  entries => {
 
-    entries.forEach(entry => {
+const revealObserver =
+  new IntersectionObserver(
 
-      if (entry.isIntersecting) {
+    entries => {
 
-        entry.target.classList.add("visible");
+      entries.forEach(entry => {
 
-        revealObserver.unobserve(entry.target);
+        if (entry.isIntersecting) {
 
-      }
+          entry.target.classList.add("visible");
 
-    });
+          revealObserver.unobserve(
+            entry.target
+          );
 
-  },
-  {
-    threshold: 0.12
-  }
-);
+        }
+
+      });
+
+    },
+
+    {
+      threshold: 0.12
+    }
+
+  );
+
 
 revealElements.forEach(element => {
+
   revealObserver.observe(element);
+
 });
 
 
@@ -146,7 +178,6 @@ function createPlayerCard(player, index) {
         ${String(index + 1).padStart(2, "0")}
       </span>
 
-
       <div class="player-avatar">
 
         <img
@@ -157,7 +188,6 @@ function createPlayerCard(player, index) {
         >
 
       </div>
-
 
       <div class="player-info">
 
@@ -175,7 +205,6 @@ function createPlayerCard(player, index) {
 
       </div>
 
-
       <div class="player-arrow">
         ↗
       </div>
@@ -190,16 +219,24 @@ function createPlayerCard(player, index) {
    HOME ROSTER
 ========================= */
 
-const homeRoster = document.getElementById("homeRoster");
+const homeRoster =
+  document.getElementById("homeRoster");
+
 
 if (homeRoster) {
 
-  homeRoster.innerHTML = PLAYERS
-    .slice(0, 3)
-    .map((player, index) => {
-      return createPlayerCard(player, index);
-    })
-    .join("");
+  homeRoster.innerHTML =
+    PLAYERS
+      .slice(0, 3)
+      .map((player, index) => {
+
+        return createPlayerCard(
+          player,
+          index
+        );
+
+      })
+      .join("");
 
 
   setTimeout(() => {
@@ -208,7 +245,9 @@ if (homeRoster) {
       .querySelectorAll(".reveal")
       .forEach(element => {
 
-        revealObserver.observe(element);
+        revealObserver.observe(
+          element
+        );
 
       });
 
@@ -221,17 +260,23 @@ if (homeRoster) {
    FULL ROSTER
 ========================= */
 
-const rosterGrid = document.getElementById("rosterGrid");
+const rosterGrid =
+  document.getElementById("rosterGrid");
+
 
 if (rosterGrid) {
 
-  rosterGrid.innerHTML = PLAYERS
-    .map((player, index) => {
+  rosterGrid.innerHTML =
+    PLAYERS
+      .map((player, index) => {
 
-      return createPlayerCard(player, index);
+        return createPlayerCard(
+          player,
+          index
+        );
 
-    })
-    .join("");
+      })
+      .join("");
 
 
   setTimeout(() => {
@@ -240,7 +285,9 @@ if (rosterGrid) {
       .querySelectorAll(".reveal")
       .forEach(element => {
 
-        revealObserver.observe(element);
+        revealObserver.observe(
+          element
+        );
 
       });
 
@@ -253,51 +300,58 @@ if (rosterGrid) {
    PLAYER STATISTICS
 ========================= */
 
-const statsTable = document.getElementById("statsTable");
+const statsTable =
+  document.getElementById("statsTable");
+
 
 if (statsTable) {
 
-  statsTable.innerHTML = PLAYERS
-    .map(player => {
+  statsTable.innerHTML =
+    PLAYERS
+      .map(player => {
 
-      return `
-        <tr>
+        const totalKills =
+          Number(player.tournamentKills || 0) +
+          Number(player.scrimKills || 0);
 
-          <td>
-            <span class="stats-player">
-              ${player.ign}
-            </span>
-          </td>
+        return `
+          <tr>
 
-          <td>
-            <span class="stats-role">
-              ${player.role}
-            </span>
-          </td>
+            <td>
+              <span class="stats-player">
+                ${player.ign}
+              </span>
+            </td>
 
-          <td>
-            ${player.matches}
-          </td>
+            <td>
+              <span class="stats-role">
+                ${player.role}
+              </span>
+            </td>
 
-          <td>
-            ${player.tournamentKills}
-          </td>
+            <td>
+              ${player.matches || "—"}
+            </td>
 
-          <td>
-            ${player.scrimKills}
-          </td>
+            <td>
+              ${player.tournamentKills}
+            </td>
 
-          <td>
-            <strong>
-              ${player.totalKills}
-            </strong>
-          </td>
+            <td>
+              ${player.scrimKills}
+            </td>
 
-        </tr>
-      `;
+            <td>
+              <strong>
+                ${totalKills}
+              </strong>
+            </td>
 
-    })
-    .join("");
+          </tr>
+        `;
+
+      })
+      .join("");
 
 }
 
@@ -310,21 +364,25 @@ document
   .querySelectorAll('a[href^="#"]')
   .forEach(anchor => {
 
-    anchor.addEventListener("click", event => {
+    anchor.addEventListener(
+      "click",
+      event => {
 
-      const target = document.querySelector(
-        anchor.getAttribute("href")
-      );
+        const target =
+          document.querySelector(
+            anchor.getAttribute("href")
+          );
 
-      if (!target) return;
+        if (!target) return;
 
-      event.preventDefault();
+        event.preventDefault();
 
-      target.scrollIntoView({
-        behavior: "smooth"
-      });
+        target.scrollIntoView({
+          behavior: "smooth"
+        });
 
-    });
+      }
+    );
 
   });
 
@@ -333,22 +391,29 @@ document
    PARALLAX HERO
 ========================= */
 
-const heroLogo = document.querySelector(".hero-logo");
+const heroLogo =
+  document.querySelector(".hero-logo");
 
-window.addEventListener("mousemove", event => {
 
-  if (!heroLogo) return;
+window.addEventListener(
+  "mousemove",
+  event => {
 
-  const x =
-    (window.innerWidth / 2 - event.clientX) / 80;
+    if (!heroLogo) return;
 
-  const y =
-    (window.innerHeight / 2 - event.clientY) / 80;
+    const x =
+      (window.innerWidth / 2 -
+        event.clientX) / 80;
 
-  heroLogo.style.transform =
-    `translate(${x}px, ${y}px)`;
+    const y =
+      (window.innerHeight / 2 -
+        event.clientY) / 80;
 
-});
+    heroLogo.style.transform =
+      `translate(${x}px, ${y}px)`;
+
+  }
+);
 
 
 /* =========================
@@ -356,7 +421,9 @@ window.addEventListener("mousemove", event => {
 ========================= */
 
 document
-  .querySelectorAll(".footer-bottom span:first-child")
+  .querySelectorAll(
+    ".footer-bottom span:first-child"
+  )
   .forEach(element => {
 
     element.innerHTML =
@@ -374,60 +441,91 @@ document
    CURSOR GLOW
 ========================= */
 
-const cursorGlow = document.createElement("div");
+const cursorGlow =
+  document.createElement("div");
 
-cursorGlow.className = "nx-cursor-glow";
+cursorGlow.className =
+  "nx-cursor-glow";
 
-document.body.appendChild(cursorGlow);
+document.body.appendChild(
+  cursorGlow
+);
 
 
-window.addEventListener("pointermove", event => {
+window.addEventListener(
+  "pointermove",
+  event => {
 
-  cursorGlow.style.transform =
-    `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+    cursorGlow.style.transform =
+      `translate3d(
+        ${event.clientX}px,
+        ${event.clientY}px,
+        0
+      )`;
 
-});
+  }
+);
 
 
 /* =========================
    PREMIUM CARD TILT
 ========================= */
 
-const tiltCards = document.querySelectorAll(
-  ".player-card, .management-card, .about-card, .nx-system-item"
-);
+const tiltCards =
+  document.querySelectorAll(
+    ".player-card, .management-card, .about-card, .nx-system-item"
+  );
 
-if (window.matchMedia("(pointer:fine)").matches) {
+
+if (
+  window.matchMedia(
+    "(pointer:fine)"
+  ).matches
+) {
 
   tiltCards.forEach(card => {
 
-    card.addEventListener("pointermove", event => {
+    card.addEventListener(
+      "pointermove",
+      event => {
 
-      const rect = card.getBoundingClientRect();
+        const rect =
+          card.getBoundingClientRect();
 
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
+        const x =
+          event.clientX -
+          rect.left;
 
-      const rotateX =
-        ((y / rect.height) - 0.5) * -4;
+        const y =
+          event.clientY -
+          rect.top;
 
-      const rotateY =
-        ((x / rect.width) - 0.5) * 4;
+        const rotateX =
+          ((y / rect.height) - 0.5) *
+          -4;
 
-      card.style.transform =
-        `perspective(900px)
-         rotateX(${rotateX}deg)
-         rotateY(${rotateY}deg)
-         translateY(-6px)`;
+        const rotateY =
+          ((x / rect.width) - 0.5) *
+          4;
 
-    });
+        card.style.transform =
+          `perspective(900px)
+           rotateX(${rotateX}deg)
+           rotateY(${rotateY}deg)
+           translateY(-6px)`;
+
+      }
+    );
 
 
-    card.addEventListener("pointerleave", () => {
+    card.addEventListener(
+      "pointerleave",
+      () => {
 
-      card.style.transform = "";
+        card.style.transform = "";
 
-    });
+      }
+    );
 
   });
 
@@ -438,38 +536,51 @@ if (window.matchMedia("(pointer:fine)").matches) {
    MAGNETIC BUTTONS
 ========================= */
 
-if (window.matchMedia("(pointer:fine)").matches) {
+if (
+  window.matchMedia(
+    "(pointer:fine)"
+  ).matches
+) {
 
   document
     .querySelectorAll(".btn")
     .forEach(button => {
 
-      button.addEventListener("pointermove", event => {
+      button.addEventListener(
+        "pointermove",
+        event => {
 
-        const rect =
-          button.getBoundingClientRect();
+          const rect =
+            button.getBoundingClientRect();
 
-        const x =
-          event.clientX -
-          rect.left -
-          rect.width / 2;
+          const x =
+            event.clientX -
+            rect.left -
+            rect.width / 2;
 
-        const y =
-          event.clientY -
-          rect.top -
-          rect.height / 2;
+          const y =
+            event.clientY -
+            rect.top -
+            rect.height / 2;
 
-        button.style.transform =
-          `translate(${x * 0.08}px, ${y * 0.08}px)`;
+          button.style.transform =
+            `translate(
+              ${x * 0.08}px,
+              ${y * 0.08}px
+            )`;
 
-      });
+        }
+      );
 
 
-      button.addEventListener("pointerleave", () => {
+      button.addEventListener(
+        "pointerleave",
+        () => {
 
-        button.style.transform = "";
+          button.style.transform = "";
 
-      });
+        }
+      );
 
     });
 
@@ -490,10 +601,13 @@ document
   .querySelectorAll("#navMenu a")
   .forEach(link => {
 
-    const href = link.getAttribute("href");
+    const href =
+      link.getAttribute("href");
 
     if (href === currentPage) {
+
       link.classList.add("active");
+
     }
 
   });
