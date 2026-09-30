@@ -4,9 +4,9 @@ const PLAYERS = [
     name: "Nahid Hasan Joy",
     role: "FRAGGER",
     photo: "assets/grey.png",
-    matches: 24,
+    matches: 26,
     tournamentKills: 3,
-    scrimKills: 13
+    scrimKills: 14
   },
 
   {
@@ -14,9 +14,9 @@ const PLAYERS = [
     name: "Asif Ahmed",
     role: "IGL",
     photo: "assets/monarch.png",
-    matches: 25,
+    matches: 28,
     tournamentKills: 2,
-    scrimKills: 12
+    scrimKills: 14
   },
 
   {
@@ -24,9 +24,9 @@ const PLAYERS = [
     name: "Shamiulla Shitul",
     role: "ASSAULTER",
     photo: "assets/noozy.png",
-    matches: 30,
+    matches: 34,
     tournamentKills: 3,
-    scrimKills: 14
+    scrimKills: 21
   },
 
   {
@@ -34,9 +34,9 @@ const PLAYERS = [
     name: "Wasir",
     role: "FRAGGER",
     photo: "assets/TEKZEEz.png",
-    matches: 8,
+    matches: 12,
     tournamentKills: 0,
-    scrimKills: 10
+    scrimKills: 25
   },
 
   {
@@ -54,7 +54,7 @@ const PLAYERS = [
     name: "Samin Muktadir",
     role: "SUPPORTER",
     photo: "assets/akatsuki.png",
-    matches: 14,
+    matches: 17,
     tournamentKills: 1,
     scrimKills: 1
   }
