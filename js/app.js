@@ -469,10 +469,7 @@ if (statsTable) {
                   ${player.ign}
                 </span>
 
-                <small class="stats-real-name">
-                  ${player.name}
-                </small>
-
+               
               </div>
 
             </td>
