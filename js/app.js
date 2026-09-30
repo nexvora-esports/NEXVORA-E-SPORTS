@@ -310,7 +310,7 @@ if (rosterGrid) {
 
 /* =========================================================
    PLAYER STATISTICS
-   AUTOMATIC RANKING
+   PROFESSIONAL RANKED LEADERBOARD
 ========================================================= */
 
 const statsTable =
@@ -326,7 +326,7 @@ if (statsTable) {
     2. If total kills are equal,
        highest MATCHES first
     3. If both are equal,
-       keep original order
+       original player order
   */
 
   const rankedPlayers =
@@ -335,13 +335,13 @@ if (statsTable) {
 
         return {
           ...player,
-          originalIndex: originalIndex
+          originalIndex
         };
 
       })
       .sort((a, b) => {
 
-        /* FIRST: TOTAL KILLS */
+        /* TOTAL KILLS */
 
         if (b.totalKills !== a.totalKills) {
 
@@ -351,7 +351,7 @@ if (statsTable) {
         }
 
 
-        /* SECOND: MATCHES */
+        /* MATCHES */
 
         if (b.matches !== a.matches) {
 
@@ -361,7 +361,7 @@ if (statsTable) {
         }
 
 
-        /* THIRD: ORIGINAL ORDER */
+        /* ORIGINAL ORDER */
 
         return a.originalIndex -
                b.originalIndex;
@@ -370,30 +370,53 @@ if (statsTable) {
 
 
   /*
-    Create the ranked statistics table
+    Create professional leaderboard rows.
   */
 
   statsTable.innerHTML =
     rankedPlayers
       .map((player, index) => {
 
-        return `
-          <tr>
+        const rank =
+          String(index + 1).padStart(2, "0");
 
-            <td>
+
+        return `
+          <tr class="stats-row">
+
+            <!-- RANK -->
+
+            <td class="stats-rank-cell">
 
               <span class="stats-rank">
-                ${index + 1}
-              </span>
-
-              <span class="stats-player">
-                ${player.ign}
+                ${rank}
               </span>
 
             </td>
 
 
-            <td>
+            <!-- PLAYER -->
+
+            <td class="stats-player-cell">
+
+              <div class="stats-player-wrap">
+
+                <span class="stats-player">
+                  ${player.ign}
+                </span>
+
+                <small class="stats-real-name">
+                  ${player.name}
+                </small>
+
+              </div>
+
+            </td>
+
+
+            <!-- ROLE -->
+
+            <td class="stats-role-cell">
 
               <span class="stats-role">
                 ${player.role}
@@ -402,24 +425,44 @@ if (statsTable) {
             </td>
 
 
-            <td>
-              ${player.matches}
+            <!-- MATCHES -->
+
+            <td class="stats-number-cell">
+
+              <span class="stats-number">
+                ${player.matches}
+              </span>
+
             </td>
 
 
-            <td>
-              ${player.tournamentKills}
+            <!-- TOURNAMENT KILLS -->
+
+            <td class="stats-number-cell">
+
+              <span class="stats-number">
+                ${player.tournamentKills}
+              </span>
+
             </td>
 
 
-            <td>
-              ${player.scrimKills}
+            <!-- SCRIM KILLS -->
+
+            <td class="stats-number-cell">
+
+              <span class="stats-number">
+                ${player.scrimKills}
+              </span>
+
             </td>
 
 
-            <td>
+            <!-- TOTAL KILLS -->
 
-              <strong>
+            <td class="stats-total-cell">
+
+              <strong class="stats-total">
                 ${player.totalKills}
               </strong>
 
@@ -456,13 +499,84 @@ document
         event.preventDefault();
 
         target.scrollIntoView({
-          behavior: "smooth"
+          behavior: "smooth",
+          block: "start"
         });
 
       }
     );
 
   });
+
+
+/* =========================================================
+   CROSS-PAGE PLAYER STATS LINK
+========================================================= */
+
+document
+  .querySelectorAll(
+    'a[href="roster.html#player-stats"]'
+  )
+  .forEach(link => {
+
+    link.addEventListener(
+      "click",
+      () => {
+
+        /*
+          Allow browser to open roster.html
+          and jump directly to player stats.
+        */
+
+        sessionStorage.setItem(
+          "openPlayerStats",
+          "true"
+        );
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   OPEN PLAYER STATS AFTER PAGE LOAD
+========================================================= */
+
+if (
+  window.location.pathname
+    .toLowerCase()
+    .endsWith("roster.html")
+) {
+
+  const hash =
+    window.location.hash;
+
+
+  if (hash === "#player-stats") {
+
+    setTimeout(() => {
+
+      const statsSection =
+        document.getElementById(
+          "player-stats"
+        );
+
+
+      if (statsSection) {
+
+        statsSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }
+
+    }, 250);
+
+  }
+
+}
 
 
 /* =========================================================
@@ -672,7 +786,12 @@ if (
 const currentPage =
   window.location.pathname
     .split("/")
-    .pop() || "index.html";
+    .pop()
+    .toLowerCase() || "index.html";
+
+
+const currentHash =
+  window.location.hash.toLowerCase();
 
 
 document
@@ -680,9 +799,44 @@ document
   .forEach(link => {
 
     const href =
-      link.getAttribute("href");
+      link
+        .getAttribute("href")
+        .toLowerCase();
 
-    if (href === currentPage) {
+
+    /*
+      Remove previously assigned active state.
+    */
+
+    link.classList.remove("active");
+
+
+    /*
+      PLAYER STATS
+      roster.html#player-stats
+    */
+
+    if (
+      currentPage === "roster.html" &&
+      currentHash === "#player-stats" &&
+      href === "roster.html#player-stats"
+    ) {
+
+      link.classList.add("active");
+
+      return;
+
+    }
+
+
+    /*
+      Normal page navigation
+    */
+
+    if (
+      !currentHash &&
+      href === currentPage
+    ) {
 
       link.classList.add("active");
 
