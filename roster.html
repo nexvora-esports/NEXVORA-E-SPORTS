@@ -26,6 +26,12 @@
 
   <style>
 
+    /* Smooth scroll for PLAYER STATS navigation */
+    html {
+      scroll-behavior: smooth;
+    }
+
+
     .stats-heading-content {
 
       display: flex;
@@ -185,6 +191,7 @@
       HOME
     </a>
 
+
     <a
       href="roster.html"
       class="active"
@@ -192,9 +199,18 @@
       ROSTER
     </a>
 
+
+    <!-- PLAYER STATS -->
+
+    <a href="#player-stats">
+      PLAYER STATS
+    </a>
+
+
     <a href="management.html">
       MANAGEMENT
     </a>
+
 
     <a href="media.html">
       MEDIA
@@ -560,7 +576,10 @@
      PLAYER STATISTICS
 ===================================================== -->
 
-<section class="stats-section">
+<section
+  class="stats-section"
+  id="player-stats"
+>
 
   <div class="section">
 
