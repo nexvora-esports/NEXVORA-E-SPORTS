@@ -319,15 +319,64 @@ const statsTable =
 
 if (statsTable) {
 
-  /*
-    Ranking rules:
+  const statsTableElement =
+    statsTable.closest("table");
 
-    1. Highest TOTAL KILLS first
-    2. If total kills are equal,
-       highest MATCHES first
-    3. If both are equal,
-       original player order
-  */
+
+  /* -------------------------------------------------------
+     FORCE CORRECT 7-COLUMN HEADER
+  ------------------------------------------------------- */
+
+  const statsHead =
+    statsTableElement
+      ? statsTableElement.querySelector("thead")
+      : null;
+
+
+  if (statsHead) {
+
+    statsHead.innerHTML = `
+
+      <tr>
+
+        <th class="stats-rank-header">
+          RANK
+        </th>
+
+        <th>
+          PLAYER
+        </th>
+
+        <th>
+          ROLE
+        </th>
+
+        <th>
+          MATCHES
+        </th>
+
+        <th>
+          TOURNAMENT KILLS
+        </th>
+
+        <th>
+          SCRIM KILLS
+        </th>
+
+        <th>
+          TOTAL KILLS
+        </th>
+
+      </tr>
+
+    `;
+
+  }
+
+
+  /* -------------------------------------------------------
+     RANKING
+  ------------------------------------------------------- */
 
   const rankedPlayers =
     PLAYERS
@@ -343,46 +392,61 @@ if (statsTable) {
 
         /* TOTAL KILLS */
 
-        if (b.totalKills !== a.totalKills) {
+        if (
+          b.totalKills !==
+          a.totalKills
+        ) {
 
-          return b.totalKills -
-                 a.totalKills;
+          return (
+            b.totalKills -
+            a.totalKills
+          );
 
         }
 
 
         /* MATCHES */
 
-        if (b.matches !== a.matches) {
+        if (
+          b.matches !==
+          a.matches
+        ) {
 
-          return b.matches -
-                 a.matches;
+          return (
+            b.matches -
+            a.matches
+          );
 
         }
 
 
         /* ORIGINAL ORDER */
 
-        return a.originalIndex -
-               b.originalIndex;
+        return (
+          a.originalIndex -
+          b.originalIndex
+        );
 
       });
 
 
-  /*
-    Create professional leaderboard rows.
-  */
+  /* -------------------------------------------------------
+     CREATE LEADERBOARD
+  ------------------------------------------------------- */
 
   statsTable.innerHTML =
     rankedPlayers
       .map((player, index) => {
 
         const rank =
-          String(index + 1).padStart(2, "0");
+          String(index + 1)
+            .padStart(2, "0");
 
 
         return `
+
           <tr class="stats-row">
+
 
             <!-- RANK -->
 
@@ -468,7 +532,9 @@ if (statsTable) {
 
             </td>
 
+
           </tr>
+
         `;
 
       })
@@ -494,13 +560,19 @@ document
             anchor.getAttribute("href")
           );
 
+
         if (!target) return;
+
 
         event.preventDefault();
 
+
         target.scrollIntoView({
+
           behavior: "smooth",
+
           block: "start"
+
         });
 
       }
@@ -522,11 +594,6 @@ document
     link.addEventListener(
       "click",
       () => {
-
-        /*
-          Allow browser to open roster.html
-          and jump directly to player stats.
-        */
 
         sessionStorage.setItem(
           "openPlayerStats",
@@ -553,7 +620,9 @@ if (
     window.location.hash;
 
 
-  if (hash === "#player-stats") {
+  if (
+    hash === "#player-stats"
+  ) {
 
     setTimeout(() => {
 
@@ -566,8 +635,11 @@ if (
       if (statsSection) {
 
         statsSection.scrollIntoView({
+
           behavior: "smooth",
+
           block: "start"
+
         });
 
       }
@@ -593,13 +665,20 @@ window.addEventListener(
 
     if (!heroLogo) return;
 
+
     const x =
-      (window.innerWidth / 2 -
-        event.clientX) / 80;
+      (
+        window.innerWidth / 2 -
+        event.clientX
+      ) / 80;
+
 
     const y =
-      (window.innerHeight / 2 -
-        event.clientY) / 80;
+      (
+        window.innerHeight / 2 -
+        event.clientY
+      ) / 80;
+
 
     heroLogo.style.transform =
       `translate(${x}px, ${y}px)`;
@@ -625,19 +704,16 @@ document
 
 
 /* =========================================================
-   NEXVORA PREMIUM INTERACTIONS
-========================================================= */
-
-
-/* =========================================================
    CURSOR GLOW
 ========================================================= */
 
 const cursorGlow =
   document.createElement("div");
 
+
 cursorGlow.className =
   "nx-cursor-glow";
+
 
 document.body.appendChild(
   cursorGlow
@@ -684,21 +760,26 @@ if (
         const rect =
           card.getBoundingClientRect();
 
+
         const x =
           event.clientX -
           rect.left;
+
 
         const y =
           event.clientY -
           rect.top;
 
+
         const rotateX =
           ((y / rect.height) - 0.5) *
           -4;
 
+
         const rotateY =
           ((x / rect.width) - 0.5) *
           4;
+
 
         card.style.transform =
           `perspective(900px)
@@ -745,15 +826,18 @@ if (
           const rect =
             button.getBoundingClientRect();
 
+
           const x =
             event.clientX -
             rect.left -
             rect.width / 2;
 
+
           const y =
             event.clientY -
             rect.top -
             rect.height / 2;
+
 
           button.style.transform =
             `translate(
@@ -787,11 +871,13 @@ const currentPage =
   window.location.pathname
     .split("/")
     .pop()
-    .toLowerCase() || "index.html";
+    .toLowerCase() ||
+  "index.html";
 
 
 const currentHash =
-  window.location.hash.toLowerCase();
+  window.location.hash
+    .toLowerCase();
 
 
 document
@@ -804,17 +890,12 @@ document
         .toLowerCase();
 
 
-    /*
-      Remove previously assigned active state.
-    */
-
-    link.classList.remove("active");
+    link.classList.remove(
+      "active"
+    );
 
 
-    /*
-      PLAYER STATS
-      roster.html#player-stats
-    */
+    /* PLAYER STATS */
 
     if (
       currentPage === "roster.html" &&
@@ -822,23 +903,25 @@ document
       href === "roster.html#player-stats"
     ) {
 
-      link.classList.add("active");
+      link.classList.add(
+        "active"
+      );
 
       return;
 
     }
 
 
-    /*
-      Normal page navigation
-    */
+    /* NORMAL PAGE */
 
     if (
       !currentHash &&
       href === currentPage
     ) {
 
-      link.classList.add("active");
+      link.classList.add(
+        "active"
+      );
 
     }
 
