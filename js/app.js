@@ -98,7 +98,7 @@ window.addEventListener("load", () => {
 
       loader.classList.add("hide");
 
-    }, 500);
+    }, 200);
 
   }
 
