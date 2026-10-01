@@ -32,7 +32,7 @@ const PLAYERS = [
   {
     ign: "BOTxTEKZEEz",
     name: "Wasir",
-    role: "FRAGGER",
+    role: "ENTRY FRAGGER",
     photo: "assets/TEKZEEz.png",
     matches: 17,
     tournamentKills: 0,
