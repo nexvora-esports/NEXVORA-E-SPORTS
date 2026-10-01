@@ -454,28 +454,28 @@ button {
 .hero-glow {
   position: absolute;
 
-  width: 360px;
-  height: 360px;
+  width: 600px;
+  height: 600px;
 
   border-radius: 50%;
 
-  filter: blur(35px);
+  filter: blur(20px);
 
-  opacity: .22;
+  opacity: .55;
 }
 
 .glow-one {
   background: var(--cyan);
 
-  right: -120px;
-  top: 20%;
+  right: -200px;
+  top: 15%;
 }
 
 .glow-two {
   background: var(--purple);
 
-  left: -150px;
-  bottom: -180px;
+  left: -250px;
+  bottom: -300px;
 }
 
 .hero-content {
