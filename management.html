@@ -13,7 +13,7 @@
 
   <meta
     name="description"
-    content="Meet the management behind NEXVORA E-SPORTS."
+    content="Meet the management and leadership system behind NEXVORA E-SPORTS."
   >
 
   <link
@@ -25,6 +25,580 @@
     rel="stylesheet"
     href="css/style.css"
   >
+
+
+  <!-- =====================================================
+       MANAGEMENT PAGE — PREMIUM CUSTOM STYLES
+  ====================================================== -->
+
+  <style>
+
+    /* =====================================================
+       MANAGEMENT HERO
+    ====================================================== */
+
+    .management-page-intro {
+      max-width: 760px;
+    }
+
+
+    /* =====================================================
+       LEADERSHIP CARDS
+    ====================================================== */
+
+    .management-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+
+    .management-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 620px;
+      background: #0b0b0b;
+      border: 1px solid rgba(255,255,255,0.10);
+      transition:
+        transform 0.45s cubic-bezier(.2,.8,.2,1),
+        border-color 0.45s ease,
+        box-shadow 0.45s ease;
+    }
+
+
+    .management-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.02) 0%,
+          rgba(255,255,255,0) 35%,
+          rgba(0,0,0,0.94) 100%
+        );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+
+    .management-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 80%;
+      height: 100%;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,0.055),
+          transparent
+        );
+      transform: skewX(-18deg);
+      transition: left 0.8s ease;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+
+    .management-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255,255,255,0.22);
+      box-shadow:
+        0 24px 70px rgba(0,0,0,0.35);
+    }
+
+
+    .management-card:hover::after {
+      left: 140%;
+    }
+
+
+    .management-photo {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      overflow: hidden;
+      background: #111;
+    }
+
+
+    .management-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          transparent 48%,
+          rgba(0,0,0,0.18) 65%,
+          rgba(0,0,0,0.95) 100%
+        );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+
+    .management-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%);
+      transform: scale(1.01);
+      transition:
+        transform 0.8s cubic-bezier(.2,.8,.2,1),
+        filter 0.6s ease;
+    }
+
+
+    .management-card:hover .management-photo img {
+      transform: scale(1.065);
+      filter: grayscale(0%);
+    }
+
+
+    .management-info {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 34px 34px 32px;
+      z-index: 3;
+    }
+
+
+    .management-role {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 13px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.68);
+    }
+
+
+    .management-role::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.7;
+    }
+
+
+    .management-info h3 {
+      margin: 0;
+      font-size: clamp(28px, 3vw, 43px);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      font-weight: 600;
+    }
+
+
+    .management-info p {
+      margin: 15px 0 0;
+      font-size: 11px;
+      line-height: 1.7;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.52);
+    }
+
+
+    /* =====================================================
+       LEADERSHIP SYSTEM
+    ====================================================== */
+
+    .leadership-system {
+      position: relative;
+      margin-top: 120px;
+      padding: 90px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+
+    .leadership-system::before {
+      content: "NX";
+      position: absolute;
+      right: -40px;
+      top: 20px;
+      font-size: clamp(160px, 24vw, 360px);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.09em;
+      color: rgba(255,255,255,0.018);
+      pointer-events: none;
+    }
+
+
+    .system-heading {
+      position: relative;
+      z-index: 1;
+      max-width: 650px;
+      margin-bottom: 70px;
+    }
+
+
+    .system-heading h2 {
+      margin: 15px 0 0;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+    }
+
+
+    .system-heading h2 span {
+      color: rgba(255,255,255,0.32);
+    }
+
+
+    .system-flow {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+    }
+
+
+    .system-step {
+      position: relative;
+      padding: 28px 28px 28px 0;
+      min-height: 150px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+
+    .system-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: 24px;
+      top: 26px;
+      font-size: 20px;
+      color: rgba(255,255,255,0.30);
+    }
+
+
+    .system-step-number {
+      display: block;
+      margin-bottom: 22px;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.35);
+    }
+
+
+    .system-step h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+
+    .system-step p {
+      margin: 0;
+      max-width: 190px;
+      font-size: 11px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.42);
+    }
+
+
+    /* =====================================================
+       LEADERSHIP PROTOCOL
+    ====================================================== */
+
+    .leadership-protocol {
+      padding: 120px 0 30px;
+    }
+
+
+    .protocol-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      margin-bottom: 55px;
+    }
+
+
+    .protocol-header h2 {
+      margin: 15px 0 0;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 0.94;
+      letter-spacing: -0.055em;
+    }
+
+
+    .protocol-header h2 span {
+      color: rgba(255,255,255,0.30);
+    }
+
+
+    .protocol-note {
+      max-width: 300px;
+      margin: 0;
+      font-size: 11px;
+      line-height: 1.8;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.40);
+      text-transform: uppercase;
+    }
+
+
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid rgba(255,255,255,0.10);
+      border-left: 1px solid rgba(255,255,255,0.10);
+    }
+
+
+    .protocol-item {
+      position: relative;
+      min-height: 230px;
+      padding: 32px;
+      border-right: 1px solid rgba(255,255,255,0.10);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      overflow: hidden;
+      transition:
+        background 0.35s ease,
+        transform 0.35s ease;
+    }
+
+
+    .protocol-item::before {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      right: -30px;
+      bottom: -35px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transform: rotate(45deg);
+      transition: transform 0.45s ease;
+    }
+
+
+    .protocol-item:hover {
+      background: rgba(255,255,255,0.025);
+    }
+
+
+    .protocol-item:hover::before {
+      transform: rotate(65deg) scale(1.15);
+    }
+
+
+    .protocol-number {
+      display: block;
+      margin-bottom: 52px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.30);
+    }
+
+
+    .protocol-item h3 {
+      margin: 0 0 10px;
+      font-size: clamp(21px, 2vw, 29px);
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+
+
+    .protocol-item p {
+      margin: 0;
+      max-width: 390px;
+      font-size: 11px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.42);
+    }
+
+
+    /* =====================================================
+       MANAGEMENT SIGNATURE LINE
+    ====================================================== */
+
+    .management-signature {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 75px 0 25px;
+    }
+
+
+    .management-signature-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.10);
+    }
+
+
+    .management-signature span {
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      color: rgba(255,255,255,0.32);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 900px) {
+
+      .management-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .management-card {
+        min-height: 560px;
+      }
+
+
+      .management-photo {
+        height: 500px;
+      }
+
+
+      .system-flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+
+      .system-step:nth-child(2)::after {
+        display: none;
+      }
+
+
+      .protocol-header {
+        display: block;
+      }
+
+
+      .protocol-note {
+        margin-top: 25px;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .management-grid {
+        gap: 16px;
+      }
+
+
+      .management-card {
+        min-height: 500px;
+      }
+
+
+      .management-photo {
+        height: 450px;
+      }
+
+
+      .management-info {
+        padding: 26px 22px 25px;
+      }
+
+
+      .management-info h3 {
+        font-size: 29px;
+      }
+
+
+      .management-info p {
+        font-size: 9px;
+        letter-spacing: 0.12em;
+      }
+
+
+      .leadership-system {
+        margin-top: 80px;
+        padding: 70px 0;
+      }
+
+
+      .system-heading {
+        margin-bottom: 45px;
+      }
+
+
+      .system-flow {
+        grid-template-columns: 1fr;
+      }
+
+
+      .system-step {
+        padding: 25px 0;
+      }
+
+
+      .system-step:not(:last-child)::after {
+        content: "↓";
+        right: auto;
+        left: 0;
+        top: auto;
+        bottom: -13px;
+      }
+
+
+      .system-step:nth-child(2)::after {
+        display: block;
+      }
+
+
+      .system-step p {
+        max-width: 270px;
+      }
+
+
+      .leadership-protocol {
+        padding-top: 80px;
+      }
+
+
+      .protocol-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .protocol-item {
+        min-height: 200px;
+        padding: 25px;
+      }
+
+
+      .protocol-number {
+        margin-bottom: 38px;
+      }
+
+
+      .management-signature {
+        padding-top: 60px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -221,6 +795,10 @@
   </div>
 
 
+  <!-- ===================================================
+       LEADERSHIP CARDS
+  ==================================================== -->
+
   <div class="management-grid">
 
 
@@ -306,6 +884,288 @@
 
 
 <!-- =====================================================
+     LEADERSHIP SYSTEM
+===================================================== -->
+
+<section class="section leadership-system">
+
+  <div class="system-heading reveal">
+
+    <span class="eyebrow">
+      NX / LEADERSHIP SYSTEM
+    </span>
+
+
+    <h2>
+
+      FROM VISION<br>
+
+      <span>
+        TO EXECUTION.
+      </span>
+
+    </h2>
+
+  </div>
+
+
+  <div class="system-flow">
+
+
+    <!-- STEP 01 -->
+
+    <div class="system-step reveal">
+
+      <span class="system-step-number">
+        001
+      </span>
+
+      <h3>
+        VISION
+      </h3>
+
+      <p>
+        Define the direction, identity and long-term ambition of NEXVORA.
+      </p>
+
+    </div>
+
+
+    <!-- STEP 02 -->
+
+    <div class="system-step reveal">
+
+      <span class="system-step-number">
+        002
+      </span>
+
+      <h3>
+        DISCIPLINE
+      </h3>
+
+      <p>
+        Build structure, standards and accountability around the team.
+      </p>
+
+    </div>
+
+
+    <!-- STEP 03 -->
+
+    <div class="system-step reveal">
+
+      <span class="system-step-number">
+        003
+      </span>
+
+      <h3>
+        DEVELOPMENT
+      </h3>
+
+      <p>
+        Support player growth through preparation, consistency and experience.
+      </p>
+
+    </div>
+
+
+    <!-- STEP 04 -->
+
+    <div class="system-step reveal">
+
+      <span class="system-step-number">
+        004
+      </span>
+
+      <h3>
+        EVOLUTION
+      </h3>
+
+      <p>
+        Adapt continuously and push NEXVORA beyond the current competitive meta.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LEADERSHIP PROTOCOL
+===================================================== -->
+
+<section class="section leadership-protocol">
+
+  <div class="protocol-header reveal">
+
+    <div>
+
+      <span class="eyebrow">
+        NX / LEADERSHIP PROTOCOL
+      </span>
+
+
+      <h2>
+
+        BUILT<br>
+
+        <span>
+          BEHIND THE TEAM.
+        </span>
+
+      </h2>
+
+    </div>
+
+
+    <p class="protocol-note">
+
+      The management system exists to create the environment where players can
+      focus, improve and compete at their highest level.
+
+    </p>
+
+  </div>
+
+
+
+  <div class="protocol-grid">
+
+
+    <!-- =================================================
+         01 — TEAM DIRECTION
+    ================================================== -->
+
+    <article class="protocol-item reveal">
+
+      <span class="protocol-number">
+        NX / 001
+      </span>
+
+
+      <h3>
+        Team Direction
+      </h3>
+
+
+      <p>
+        Establishing the competitive identity, priorities and long-term
+        direction of NEXVORA E-SPORTS.
+      </p>
+
+    </article>
+
+
+
+    <!-- =================================================
+         02 — PLAYER DEVELOPMENT
+    ================================================== -->
+
+    <article class="protocol-item reveal">
+
+      <span class="protocol-number">
+        NX / 002
+      </span>
+
+
+      <h3>
+        Player Development
+      </h3>
+
+
+      <p>
+        Creating a structured environment focused on growth, consistency,
+        teamwork and individual improvement.
+      </p>
+
+    </article>
+
+
+
+    <!-- =================================================
+         03 — COMPETITIVE STRATEGY
+    ================================================== -->
+
+    <article class="protocol-item reveal">
+
+      <span class="protocol-number">
+        NX / 003
+      </span>
+
+
+      <h3>
+        Competitive Strategy
+      </h3>
+
+
+      <p>
+        Supporting preparation, decision-making and the systems required to
+        compete effectively in high-pressure environments.
+      </p>
+
+    </article>
+
+
+
+    <!-- =================================================
+         04 — LONG-TERM VISION
+    ================================================== -->
+
+    <article class="protocol-item reveal">
+
+      <span class="protocol-number">
+        NX / 004
+      </span>
+
+
+      <h3>
+        Long-Term Vision
+      </h3>
+
+
+      <p>
+        Building NEXVORA as a sustainable esports organization that continues
+        to evolve beyond short-term results.
+      </p>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SIGNATURE LINE
+===================================================== -->
+
+<section class="section">
+
+  <div class="management-signature reveal">
+
+    <div class="management-signature-line"></div>
+
+
+    <span>
+      NEXVORA / BEYOND THE META
+    </span>
+
+
+    <div class="management-signature-line"></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
      CTA
 ===================================================== -->
 
@@ -369,11 +1229,13 @@
         alt="NEXVORA E-SPORTS"
       >
 
+
       <div class="footer-brand-text">
 
         <span>
           NEXVORA E-SPORTS
         </span>
+
 
         <small>
           BEYOND THE META.
@@ -392,6 +1254,7 @@
       © 2026 NEXVORA E-SPORTS
     </span>
 
+
     <span>
       BEYOND THE META.
     </span>
@@ -401,6 +1264,10 @@
 </footer>
 
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script src="js/app.js"></script>
 
