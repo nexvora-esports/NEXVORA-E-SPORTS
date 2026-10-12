@@ -1,12 +1,12 @@
 const PLAYERS = [
   {
-    ign: "NXvesGrey",
-    name: "Nahid Hasan Joy",
+    ign: "LethalVip3r",
+    name: "Talha Zobair",
     role: "SUPPRTER",
-    photo: "assets/grey.png",
-    matches: 28,
-    tournamentKills: 3,
-    scrimKills: 16
+    photo: "assets/Talha.png",
+    matches: 13,
+    tournamentKills: 0,
+    scrimKills: 9
   },
 
   {
@@ -14,9 +14,9 @@ const PLAYERS = [
     name: "Asif Ahmed",
     role: "FRAGGER",
     photo: "assets/monarch.png",
-    matches: 34,
-    tournamentKills: 2,
-    scrimKills: 20
+    matches: 69,
+    tournamentKills: 6,
+    scrimKills: 37
   },
 
   {
@@ -24,29 +24,29 @@ const PLAYERS = [
     name: "Shamiulla Shitul",
     role: "ASSAULTER",
     photo: "assets/noozy.png",
-    matches: 39,
-    tournamentKills: 3,
-    scrimKills: 28
+    matches: 89,
+    tournamentKills: 9,
+    scrimKills: 61
   },
 
   {
     ign: "BOTxTEKZEEz",
-    name: "Wasir",
+    name: "MD Wasir Rahman",
     role: "ENTRY FRAGGER",
     photo: "assets/TEKZEEz.png",
-    matches: 17,
-    tournamentKills: 0,
-    scrimKills: 31
+    matches: 48,
+    tournamentKills: 3,
+    scrimKills: 73
   },
 
   {
     ign: "CO々乃EN乙IL",
-    name: "",
+    name: "BENZIL",
     role: "IGL",
     photo: "assets/.png",
-    matches: 7,
-    tournamentKills: 0,
-    scrimKills: 18
+    matches: 58,
+    tournamentKills: 2,
+    scrimKills: 53
   },
 
   {
