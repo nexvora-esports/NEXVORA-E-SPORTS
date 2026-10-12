@@ -54,9 +54,9 @@ const PLAYERS = [
     name: "Samin Muktadir",
     role: "SUPPORTER",
     photo: "assets/akatsuki.png",
-    matches: 20,
+    matches: 37,
     tournamentKills: 1,
-    scrimKills: 4
+    scrimKills: 7
   }
 ];
 
